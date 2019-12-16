@@ -10,7 +10,12 @@ export class AppComponent {
   title = 'app';
 
   constructor(htttClient: HttpClient) {
-    // htttClient.get('http://localhost:3035/api/resource').subscribe();
+    htttClient.get('http://localhost:3035/api/resource')
+      .subscribe(resources => {
+        console.log(resources);
+      }, err => {
+        console.error(err);
+      });
     // htttClient.post('http://localhost:3035/api/resource', {}).subscribe();
 
     // htttClient.get('api/resource').subscribe();
