@@ -18,3 +18,5 @@
    3.  Run 'npm install' to install required packages
    4.  Run 'ng serve' to launch application
    
+4. Follow further instructions on UI
+   
