@@ -1,7 +1,9 @@
 ﻿using AngularCourseBE.Models;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Owin;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
 
@@ -38,8 +40,21 @@ namespace AngularCourseBE.Controllers
                 return BadRequest("Wrong username or password");
             }
 
-            var token = CreateToken(signInModel.UserName);
-            return Ok(token);
+            var user = new ClaimsIdentity(new[] 
+                {
+                    new Claim(ClaimTypes.Name, _user.UserName)
+                },
+                "ApplicationCookie"
+            );
+
+            IOwinContext owinContext = Request.GetOwinContext();
+            owinContext.Authentication.SignIn(user);
+
+            return Ok();
+
+                // uncomment to use JWT Auth
+            //var token = CreateToken(signInModel.UserName);
+            //return Ok(token);
         }
 
         private string CreateToken(string userName)
