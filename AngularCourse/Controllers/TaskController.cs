@@ -1,12 +1,13 @@
 ﻿using AngularCourseBE.Models;
 using AngularCourseBE.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace AngularCourseBE.Controllers
 {
-    [Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("api/tasks")]
     public class TaskController : ControllerBase

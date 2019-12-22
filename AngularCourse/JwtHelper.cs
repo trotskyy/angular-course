@@ -6,6 +6,8 @@ namespace AngularCourseBE
 {
     public static class JwtHelper
     {
+        public const string JwtCookieName = "AngularCourse.Jwt";
+
         public const string Audience = "http://localhost:4200";
 
         public const string Issuer = "http://localhost:3035";

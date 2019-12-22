@@ -1,9 +1,9 @@
 ﻿using AngularCourseBE.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
-
 using System.Security.Claims;
 
 namespace AngularCourseBE.Controllers
@@ -17,6 +17,13 @@ namespace AngularCourseBE.Controllers
             UserName = "username",
             Password = "password"
         };
+
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public AuthController(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
+        }
 
         [HttpPost]
         [Route("sign-in")]
@@ -40,14 +47,23 @@ namespace AngularCourseBE.Controllers
                 return BadRequest("Wrong username or password");
             }
 
-            var token = CreateToken(signInModel.UserName);
+            string token = CreateToken(signInModel.UserName, out DateTime expiresAt);
+
+            _httpContextAccessor.HttpContext.Response.Cookies.Append(JwtHelper.JwtCookieName, token,
+                new CookieOptions
+                {
+                    HttpOnly = true,
+                    Expires = expiresAt,
+                    SameSite = SameSiteMode.Lax,
+                });
+
             return Ok(token);
         }
 
-        private string CreateToken(string userName)
+        private string CreateToken(string userName, out DateTime expiresAt)
         {
             DateTime issuedAt = DateTime.UtcNow;
-            DateTime expires = issuedAt + JwtHelper.TokenLifetTime;
+            expiresAt = issuedAt + JwtHelper.TokenLifetTime;
 
             var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -66,7 +82,7 @@ namespace AngularCourseBE.Controllers
                     audience: JwtHelper.Audience,
                     subject: claimsIdentity,
                     notBefore: issuedAt,
-                    expires: expires,
+                    expires: expiresAt,
                     signingCredentials: signingCredentials);
 
             string tokenString = tokenHandler.WriteToken(token);

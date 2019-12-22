@@ -1,4 +1,5 @@
-﻿using AngularCourseBE;
+﻿using AngularCourse.Middleware;
+using AngularCourseBE;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +15,17 @@ namespace AngularCourse
         {
             AddJwtAuth(services);
 
+            services.AddCors(options => options.AddDefaultPolicy(policy =>
+            {
+                policy.AllowCredentials()
+                   .AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+            }));
+
             services.AddMvc();
+
+            services.AddHttpContextAccessor();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -24,12 +35,16 @@ namespace AngularCourse
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
-
-            app.Run(async (context) =>
+            app.UseCors(policy =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                policy.AllowCredentials()
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
             });
+
+            app.UseMiddleware<TokenCookieConvertingMiddleware>();
+            app.UseMvc();
         }
 
         private void AddJwtAuth(IServiceCollection services)
@@ -38,7 +53,11 @@ namespace AngularCourse
             string issuer = JwtHelper.Issuer;
 
             var signingCredentials = JwtHelper.CreateCredentials();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
