@@ -1,3 +1,46 @@
-img {
-    width: 100%;
+tr {
+    cursor: pointer;
 }
+
+nav a {
+    color: #fff;
+}
+
+.task-list {
+    width: 50%;
+}
+
+.task-list .header button {
+    margin-right: .5rem;
+}
+
+.task-list .header {
+    display: flex;
+    padding: 1rem;
+}
+
+.task {
+    padding: 1rem;
+    width: 50%;
+}
+
+.task .card {
+    padding: 1rem;
+}
+
+textarea {
+    height: 200px;
+}
+
+.subtask {
+    margin-top: 1rem;
+}
+
+.add-subtask-header {
+    display: flex;
+}
+
+.add-subtask-header button {
+    margin-left: 10px;
+}
+

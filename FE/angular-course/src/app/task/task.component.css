@@ -1,0 +1,20 @@
+.task {
+    padding: 1rem;
+    width: 50%;
+}
+
+.task .card {
+    padding: 1rem;
+}
+
+textarea {
+    height: 200px;
+}
+
+.add-subtask-header {
+    display: flex;
+}
+
+.add-subtask-header button {
+    margin-left: 10px;
+}

@@ -13,8 +13,8 @@ namespace AngularCourseBE
     {
         public void Configuration(IAppBuilder app)
         {
-            //AddJwtAuth(app);
-            AddCookieAuth(app);
+            AddJwtAuth(app);
+            //AddCookieAuth(app);
 
             var config = new HttpConfiguration();
             WebApiConfig.Register(config);

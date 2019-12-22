@@ -52,9 +52,9 @@ namespace AngularCourseBE.Controllers
 
             return Ok();
 
-                // uncomment to use JWT Auth
-            //var token = CreateToken(signInModel.UserName);
-            //return Ok(token);
+                 // uncomment to use JWT Auth
+            var token = CreateToken(signInModel.UserName);
+            return Ok(token);
         }
 
         private string CreateToken(string userName)

@@ -1,0 +1,40 @@
+<nav class="bg-dark">
+  <a class="m-2 btn btn-primary">Tasks</a>
+  <a class="m-2 btn btn-secondary">Resources</a>
+  <button (click)="onClick()"
+    class="m-2 btn btn-secondary float-right">Sign in</button>
+</nav>
+
+<div *ngIf="showPopUp"
+  class="pop-up-container"
+  (click)="onHideClick()">
+  <div class="pop-up form-group"
+    (click)="onFormClick($event)">
+    <h5>Sign in</h5>
+
+    <br>
+    <label for="login">Login</label>
+    <input [(ngModel)]="login"
+      type="text"
+      class="form-control"
+      autocomplete="off"
+      name="login" 
+      [ngClass]="{ 'is-invalid' : invalid }"/>
+
+    <br>
+    <label for="password">Password</label>
+    <input type="password"
+    [(ngModel)]="password"
+      class="form-control"
+      autocomplete="off"
+      name="password"
+      [ngClass]="{ 'is-invalid' : invalid }" />
+
+    <br>
+    <div class="btn-container">
+      <button class="btn btn-primary"
+        (click)="onOk()">Ok</button>
+      <button class="btn btn-secondary">Cancel</button>
+    </div>
+  </div>
+</div>

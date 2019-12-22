@@ -1,0 +1,29 @@
+<div class="task-list float-left">
+    <div class="header">
+        <button class="float-left btn btn-light text-success"
+            title="Add task">
+            <i class="fa fa-plus"></i>
+        </button>
+        <h4 class="float-left">Task list</h4>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <th>Task name</th>
+            <th>Total hours</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of taskList"
+                title="Select task"
+                (click)="onClick(task.id)">
+                <td>{{ task.name }}</td>
+                <td>{{ task.totalEstimatedHours }}</td>
+            </tr>
+
+            <!-- <tr class="bg-dark text-white"
+                title="Select task">
+                <td>Learn JS</td>
+                <td>15</td>
+            </tr>             -->
+        </tbody>
+    </table>
+</div>

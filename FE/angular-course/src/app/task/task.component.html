@@ -1,0 +1,27 @@
+<div class="task form-group float-right">
+  <div *ngIf="task"
+    class="card">
+    <div>
+      <h4 class="float-left">{{ task.name }}</h4>
+      <button class="btn btn-light text-danger float-right"
+        title="Remove task">
+        <i class="fa fa-trash"></i>
+      </button>
+    </div>
+    <span class="text-muted">Total hours: {{ totalHours }}</span>
+    <hr>
+
+    <h6>Created:</h6>
+    <p>{{ task.createdAt | date:'yyyy.MM.dd' }}</p>
+
+    <h6>Description</h6>
+    <textarea class="form-control"
+      [(ngModel)]="task.description"></textarea>
+
+    <br>
+    <h6>Subtasks:</h6>
+    
+
+    <button class="btn btn-primary m-2">Update</button>
+  </div>
+</div>

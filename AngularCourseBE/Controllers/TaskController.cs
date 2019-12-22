@@ -5,7 +5,7 @@ using System.Web.Http;
 
 namespace AngularCourseBE.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/tasks")]
     public class TaskController : ApiController
     {

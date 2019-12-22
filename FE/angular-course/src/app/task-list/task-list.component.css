@@ -1,0 +1,12 @@
+.task-list {
+    width: 50%;
+}
+
+.task-list .header button {
+    margin-right: .5rem;
+}
+
+.task-list .header {
+    display: flex;
+    padding: 1rem;
+}

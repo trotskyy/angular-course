@@ -1,11 +1,146 @@
-<div>
-  <h1>App works!</h1>
-  <p>To enable communication with Back End, ensure your <b>Project URL</b> is set to <u>http://localhost:3035</u></p>
-  <p><small>* In Visual Studio: right click on project -> select properties (at bottom)</small></p>
-  <img src="./assets/Instruction.PNG"/>
-  <p>Run your back end API, press F12 and then F5 on current page</p>
-  <p>Your <b>Network</b> tab should look like below</p>
-  <img src="./assets/Instruction2.PNG"/>
-
+ <div>
+   <app-nav-bar></app-nav-bar>
+  <app-task-list 
+  (select)="onSelect($event)"></app-task-list>
+  <app-task
+    [taskId]="selectedTaskId"
+    ></app-task>
 </div>
 
+<!--  -->
+
+
+<!-- [taskId]="selectedId" -->
+
+
+<!--
+
+<div>
+  <nav class="bg-dark">
+    <a class="m-2 btn btn-primary">Tasks</a>
+    <a class="m-2 btn btn-secondary">Resources</a>
+    <button class="m-2 btn btn-secondary float-right">Sign in</button>
+  </nav>
+  <div>
+    <div class="task-list float-left">
+      <div class="header">
+        <button class="float-left btn btn-light text-success"
+          title="Add task">
+          <i class="fa fa-plus"></i>
+        </button>
+        <h4 class="float-left">Task list</h4>
+      </div>
+      <table class="table table-striped table-hover">
+        <thead>
+          <th>Task name</th>
+          <th>Total hours</th>
+        </thead>
+        <tbody>
+          <tr title="Select task">
+            <td>Learn angular</td>
+            <td>32</td>
+          </tr>
+
+          <tr class="bg-dark text-white"
+            title="Select task">
+            <td>Learn JS</td>
+            <td>15</td>
+          </tr>
+
+          <tr title="Select task">
+            <td>And so on</td>
+            <td>15</td>
+          </tr>
+
+          <tr title="Select task">
+            <td>And so on</td>
+            <td>15</td>
+          </tr>
+
+          <tr title="Select task">
+            <td>And so on</td>
+            <td>15</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="task form-group float-right">
+      <div class="card">
+        <div>
+          <h4 class="float-left">Learn JS</h4>
+          <button class="btn btn-light text-danger float-right"
+            title="Remove task">
+            <i class="fa fa-trash"></i>
+          </button>
+        </div>
+        <span class="text-muted">Total hours: 15</span>
+        <hr>
+
+        <h6>Created:</h6>
+        <p>2019/12/18 09:20</p>
+
+        <h6>Description</h6>
+        <textarea
+          class="form-control">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nesciunt nam eligendi temporibus aut delectus, accusamus expedita error voluptatibus. Atque aspernatur sapiente accusamus magnam, quasi debitis animi excepturi libero repellendus?</textarea>
+
+        <br>
+        <h6>Subtasks:</h6>
+        <div class="subtask card">
+          <div>
+            <span>Learn types</span>
+            <button class="btn btn-light text-danger float-right"
+              title="Remove subtask">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+          <hr>
+          8 hours
+          <br />
+          <small>boolean, number, string, null, undefined, [Symbol] and BigInt</small>
+        </div>
+
+        <div class="subtask card">
+          <div>
+            <span>One more subtask</span>
+            <button class="btn btn-light text-danger float-right"
+              title="Remove subtask">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+          <hr>
+          7 hours
+          <br />
+          <small>bla bla bla</small>
+        </div>
+
+        <div class="subtask card">
+          <div class="add-subtask-header">
+            <input type="text"
+              placeholder="Subtask name"
+              class="form-control" />
+            <button class="btn btn-light text-success"
+              title="Add subtask">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+          <label for="estimate">
+            <small class="text-muted">Estimate</small>
+          </label>
+          <input type="number"
+            class="form-control"
+            placeholder="Hours number"
+            name="estimate" />
+          <br />
+          <textarea placeholder="Description"
+            class="form-control"></textarea>
+        </div>
+
+        <button class="btn btn-primary m-2">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ -->
