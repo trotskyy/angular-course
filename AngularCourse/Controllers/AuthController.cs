@@ -54,7 +54,7 @@ namespace AngularCourseBE.Controllers
                 {
                     HttpOnly = true,
                     Expires = expiresAt,
-                    SameSite = SameSiteMode.Lax,
+                    SameSite = SameSiteMode.None,
                 });
 
             return Ok(token);

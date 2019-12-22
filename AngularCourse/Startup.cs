@@ -15,14 +15,6 @@ namespace AngularCourse
         {
             AddJwtAuth(services);
 
-            services.AddCors(options => options.AddDefaultPolicy(policy =>
-            {
-                policy.AllowCredentials()
-                   .AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-            }));
-
             services.AddMvc();
 
             services.AddHttpContextAccessor();
@@ -34,14 +26,6 @@ namespace AngularCourse
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseCors(policy =>
-            {
-                policy.AllowCredentials()
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader();
-            });
 
             app.UseMiddleware<TokenCookieConvertingMiddleware>();
             app.UseMvc();

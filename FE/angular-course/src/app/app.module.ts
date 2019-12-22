@@ -10,7 +10,6 @@ import { TaskComponent } from './task/task.component';
 import { SubTaskComponent } from './task/sub-task/sub-task.component';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { ApiInterceptor } from 'src/interceptors/api.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,11 +26,6 @@ import { ApiInterceptor } from 'src/interceptors/api.interceptor';
     BrowserModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ApiInterceptor,
-      multi: true
-    }
   ],
   bootstrap: [AppComponent]
 })
